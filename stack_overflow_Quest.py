@@ -14,7 +14,10 @@ def get_questions():
 
     url = f'https://api.stackexchange.com/2.3/questions?fromdate={two_ago}&todate={dt}&sort=votes&tagged=Python&site=stackoverflow'
     response = requests.get(url)
+
     return response.json()
 
 if __name__ == '__main__':
-    pprint(get_questions())
+    data = get_questions()['items']
+    for quest in data:
+        pprint(quest['title'])
